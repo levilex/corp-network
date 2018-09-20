@@ -16,8 +16,7 @@ class LdapController extends Controller {
     public function ldapLogin(Request $request) {
         $data = $request;
 
-        $barra="";
-        $uname = 'eurecat'.$data['unm'];   
+        $uname = 'eurecat\\' . $data['unm'];
         echo $uname;
         $pwd = $data['psw'];
         $host = "ldap://local.eurecat.org";
@@ -26,16 +25,14 @@ class LdapController extends Controller {
         // conexión al servidor LDAP
 
         $ldapconn = ldap_connect($host, $puerto) or die("No ha sido posible conectarse al servidor");
-        
+
         // realizando la autenticación login
-        
-        $login = ldap_bind($ldapconn, $uname, $pwd);
-        
-        if ($login) {
+
+        if ($login = ldap_bind($ldapconn, $uname, $pwd) != true) {
             return 'BASUCO';
-        } else {
-            return 'OK';
         }
+        
+        return 'eyeyyeyeaa';
     }
 
 }
