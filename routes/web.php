@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::post('/logeado', function(){
+//    return 'enviado!!!';
+//});
+
+Route::post('/logeado', 'LdapController@ldapLogin');
